@@ -59,7 +59,11 @@
 
 </template>
 
+
+
 <script>
+
+import axios from 'axios';
 
   export default {
    data(){
@@ -67,6 +71,15 @@
    show: false,
    };
      },
+     created(){
+       axios.get('https://pokeapi.co/api/v2/pokemon/1')
+       .then(response =>{
+         console.log(response);
+       })
+       .catch(err =>{
+         console.log(err);
+       })
+     }
   };
 </script>
 
