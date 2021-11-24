@@ -4,7 +4,7 @@
     <img src="https://raw.githubusercontent.com/sleduardo20/pokedex/0671af442dff1d8f7141e49eb83b438885bbc9e9/public/img/logo.svg">
    </div>
    <div class="content">
-           <div v-for="i in 5" :key="i">
+           <div v-for="(data, index) in pokemons" :key="index">
               <v-app id="inspire"  class="size">
     <v-card
       class="mx-auto"
@@ -12,12 +12,12 @@
     >
       <v-img
       class="pointer"
-        src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+        :src="data.url"
         height="200px"
       ></v-img>
   
       <v-card-title>
-        Top western road trips
+        {{ data.name }}
       </v-card-title>
   
       <v-card-subtitle>
@@ -69,12 +69,22 @@ import axios from 'axios';
    data(){
      return {
    show: false,
+   isActive: true,
+  pokemons: [],
+   pokemon: {
+     name: "",
+     url:""
+   }
    };
      },
      created(){
-       axios.get('https://pokeapi.co/api/v2/pokemon/1')
+       let instance = this;
+       axios
+       .get('https://pokeapi.co/api/v2/pokemon/1')
        .then(response =>{
-         console.log(response);
+         instance.pokemon.url = response.data.sprites.front_default
+         instance.pokemon.name = response.data.name
+         instance.pokemons.push(this.pokemon)
        })
        .catch(err =>{
          console.log(err);
@@ -97,5 +107,9 @@ import axios from 'axios';
 
 .pointer{
   cursor: pointer;
+}
+
+.active{
+  color: blue;
 }
 </style>
