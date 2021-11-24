@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="center">
-    <img src="https://raw.githubusercontent.com/sleduardo20/pokedex/0671af442dff1d8f7141e49eb83b438885bbc9e9/public/img/logo.svg">
+    <img src="https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png">
    </div>
    <div class="content">
            <div v-for="(data, index) in pokemons" :key="index">
@@ -63,7 +63,7 @@
 
 <script>
 
-import axios from 'axios';
+import axios from "axios";
 
   export default {
    data(){
@@ -71,25 +71,33 @@ import axios from 'axios';
    show: false,
    isActive: true,
   pokemons: [],
-   pokemon: {
-     name: "",
-     url:""
-   }
-   };
+  };
      },
-     created(){
+     created() {
        let instance = this;
-       axios
-       .get('https://pokeapi.co/api/v2/pokemon/1')
-       .then(response =>{
-         instance.pokemon.url = response.data.sprites.front_default
-         instance.pokemon.name = response.data.name
-         instance.pokemons.push(this.pokemon)
+
+       for (let i = 0; i <= 200; i++) {
+      axios
+       .get(`https://pokeapi.co/api/v2/pokemon/${i + i}`)
+       .then((response) => {
+           let pokemon = {
+            name: response.data.name,
+            url: response.data.sprites.front_default,
+           };
+         
+        
+         instance.pokemons.push(pokemon);
        })
-       .catch(err =>{
+       .catch((err) =>{
          console.log(err);
-       })
-     }
+       });
+
+       }
+     
+
+      console.log(this.pokenons);
+
+     },
   };
 </script>
 
