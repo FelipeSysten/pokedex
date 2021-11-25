@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="center">
-    <img src="https://archives.bulbagarden.net/media/upload/4/4b/Pok%C3%A9dex_logo.png">
+    <img src="../assets/pokedex.png">
    </div>
    <div class="content">
            <div v-for="(data, index) in pokemons" :key="index">
@@ -76,9 +76,9 @@ import axios from "axios";
      created() {
        let instance = this;
 
-       for (let i = 0; i <= 200; i++) {
+       for (let i = 0; i <= 10; i++) {
       axios
-       .get(`https://pokeapi.co/api/v2/pokemon/${i + i}`)
+       .get(`https://pokeapi.co/api/v2/pokemon/${i + 1}`)
        .then((response) => {
            let pokemon = {
             name: response.data.name,
@@ -95,7 +95,7 @@ import axios from "axios";
        }
      
 
-      console.log(this.pokenons);
+      //console.log(this.pokenons);
 
      },
   };
@@ -105,7 +105,7 @@ import axios from "axios";
 .center{
   text-align: center;
   margin-top: 1%;
-  padding: 100px;
+  
 
 }
 
