@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="center">
-    <img src="../assets/pokedex.png">
+      <img src="../assets/pokedex.png">
+    <div class="flex">
+      <div class="flox-col">
    </div>
    <div class="content">
            <div v-for="(data, index) in pokemons" :key="index">
@@ -55,6 +57,11 @@
   </v-app>
            </div>
       </div>
+      <div class="flex-col">
+        teste
+      </div>
+    </div>
+      </div>
     </div>
 
 </template>
@@ -105,8 +112,11 @@ import axios from "axios";
 .center{
   text-align: center;
   margin-top: 1%;
-  
+ 
+}
 
+.content {
+  padding: 2%;
 }
 
 .size{
@@ -115,6 +125,14 @@ import axios from "axios";
 
 .pointer{
   cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex: 1;
 }
 
 .active{
