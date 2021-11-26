@@ -95,8 +95,11 @@ import PokemonInfo from '../components/PokemonInfo.vue';
       axios
        .get(`https://pokeapi.co/api/v2/pokemon/${i + 1}`)
        .then((response) => {
+         console.log(response);
            let pokemon = {
             abilities: response.data.abilities,
+            sprites: response.data.sprites,
+            game_indices: response.data.game_indices,
             name: response.data.name,
             url: response.data.sprites.front_default,
            };
