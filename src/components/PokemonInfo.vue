@@ -1,18 +1,20 @@
 <template>
     <div> 
         
-        <h1>{{ saludo_componente }} </h1>
+        <h1>{{ pokemon_info }} </h1>
         
         </div>
 </template>
  
 <script >
 export default {
+    props: {
+        pokemon_info: []
+    },
     data(){
         return {
 
-        
-        saludo_componente: "Hola sou um componente"
+    
 
         }
 

@@ -62,7 +62,8 @@
            </div>
       </div>
       <div class="flex-col">
-        <PokemonInfo></PokemonInfo>
+        <PokemonInfo :pokemon_info="selected_pokemon"></PokemonInfo>
+         
       </div>
     </div>
       </div>
@@ -84,6 +85,7 @@ import PokemonInfo from '../components/PokemonInfo.vue';
    show: false,
    isActive: true,
   pokemons: [],
+  selected_pokemon: [],
   };
      },
      created() {
@@ -93,7 +95,6 @@ import PokemonInfo from '../components/PokemonInfo.vue';
       axios
        .get(`https://pokeapi.co/api/v2/pokemon/${i + 1}`)
        .then((response) => {
-         console.log(response);
            let pokemon = {
             abilities: response.data.abilities,
             name: response.data.name,
@@ -115,7 +116,7 @@ import PokemonInfo from '../components/PokemonInfo.vue';
      },
   methods: {
     send_info(pokemon_info){
-      console.log(pokemon_info);
+      this.selected_pokemon = pokemon_info
     }
   }
 
