@@ -2,10 +2,13 @@
   <div>
     <div class="center">
       <img src="../assets/pokedex.png">
+
+      </div>
+       <div class="content">
     <div class="flex">
-      <div class="flox-col">
-   </div>
-   <div class="content">
+      <div class="flex-col">
+   
+  
            <div v-for="(data, index) in pokemons" :key="index">
               <v-app id="inspire"  class="size">
     <v-card
@@ -16,6 +19,7 @@
       class="pointer"
         :src="data.url"
         height="200px"
+        @click="send_info(data)"
       ></v-img>
   
       <v-card-title>
@@ -58,7 +62,7 @@
            </div>
       </div>
       <div class="flex-col">
-        teste
+        <PokemonInfo></PokemonInfo>
       </div>
     </div>
       </div>
@@ -71,8 +75,10 @@
 <script>
 
 import axios from "axios";
+import PokemonInfo from '../components/PokemonInfo.vue';
 
   export default {
+    components: {PokemonInfo} ,
    data(){
      return {
    show: false,
@@ -87,7 +93,9 @@ import axios from "axios";
       axios
        .get(`https://pokeapi.co/api/v2/pokemon/${i + 1}`)
        .then((response) => {
+         console.log(response);
            let pokemon = {
+            abilities: response.data.abilities,
             name: response.data.name,
             url: response.data.sprites.front_default,
            };
@@ -105,6 +113,12 @@ import axios from "axios";
       //console.log(this.pokenons);
 
      },
+  methods: {
+    send_info(pokemon_info){
+      console.log(pokemon_info);
+    }
+  }
+
   };
 </script>
 
@@ -115,9 +129,6 @@ import axios from "axios";
  
 }
 
-.content {
-  padding: 2%;
-}
 
 .size{
   height: 600px;
@@ -129,10 +140,13 @@ import axios from "axios";
 
 .flex {
   display: flex;
+  
 }
 
 .flex-col {
   flex: 1;
+  background-color: burlywood;
+  
 }
 
 .active{
