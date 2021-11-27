@@ -6,7 +6,7 @@
         <v-card >
           <v-img
             height="200px"
-            src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
+            src="https://tm.ibxk.com.br/2016/07/19/19183755227514.jpg?ims=1120x420"
           >
            </v-img>
 
@@ -56,13 +56,13 @@
                 <div>
                     <div>
                         <v-img
-            height="200px"
-            src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
+            height="400px"
+            :src=" pokemon "
           >
            </v-img>
                     </div>
                   <div class="font-weight-normal">
-                    <strong>{{ pokemon }}</strong>
+                    <strong>{{  }}</strong>
                   </div>
                 </div>
               </v-timeline-item>
@@ -144,7 +144,7 @@ messages: [
 <style scoped>
 
 .static {
-    position: inherit;
+    position:relative ;
 }
 
 </style>
