@@ -36,7 +36,35 @@
             </v-timeline>
           </v-card-text>
   
-          <v-card-text>
+       
+
+        <v-card-text>
+            <div class="font-weight-bold ml-8 mb-2">
+              Game Indices
+            </div>
+
+        
+  
+            <v-timeline
+              align-top
+              dense
+            >
+              <v-timeline-item
+                v-for="(pokemon, i) in pokemon_info.game_indices"
+                :key="i"
+                color="red"
+                small
+              >
+                <div>
+                  <div class="font-weight-normal">
+                    <strong>{{ pokemon.version.name  }} {{ pokemon.game_index  }} </strong> 
+                  </div>
+                </div>
+              </v-timeline-item>
+            </v-timeline>
+          </v-card-text>
+
+   <v-card-text>
             <div class="font-weight-bold ml-8 mb-2">
               Sprites
             </div>
@@ -69,31 +97,6 @@
             </v-timeline>
           </v-card-text>
 
-        <v-card-text>
-            <div class="font-weight-bold ml-8 mb-2">
-              Game Indices
-            </div>
-
-        
-  
-            <v-timeline
-              align-top
-              dense
-            >
-              <v-timeline-item
-                v-for="(pokemon, i) in pokemon_info.game_indices"
-                :key="i"
-                color="red"
-                small
-              >
-                <div>
-                  <div class="font-weight-normal">
-                    <strong>{{ pokemon.version.name  }} {{ pokemon.game_index  }} </strong> 
-                  </div>
-                </div>
-              </v-timeline-item>
-            </v-timeline>
-          </v-card-text>
 
         </v-card>
       </v-row>

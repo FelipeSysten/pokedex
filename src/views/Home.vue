@@ -1,15 +1,38 @@
 <template>
   <div>
+
     <div class="center">
       <img src="../assets/pokedex.png">
-
+      <div>
+         <div>
+ <v-toolbar
+      dark
+      color="teal"
+    >
+      <v-toolbar-title>Digite o nome, especie, tipo ou ID</v-toolbar-title>
+      <v-autocomplete
+        v-model="search"
+        :items="pokemons"
+        cache-items
+        class="mx-4"
+        flat
+        hide-no-data
+        hide-details
+        label="Qual Pokemon procura?"
+        solo-inverted
+      ></v-autocomplete>
+   
+    </v-toolbar>
+    </div>
+      
+      </div>
       </div>
        <div class="content">
     <div class="flex">
       <div class="flex-col">
    
   
-           <div v-for="(data, index) in pokemons" :key="index">
+           <div v-for="(data, index) in pokemonsFiltered" :key="index">
               <v-app id="inspire"  class="size">
     <v-card
       class="mx-auto"
@@ -67,6 +90,7 @@
       </div>
     </div>
       </div>
+      
     </div>
 
 </template>
@@ -86,6 +110,11 @@ import PokemonInfo from '../components/PokemonInfo.vue';
    isActive: true,
   pokemons: [],
   selected_pokemon: [],
+  search:"",
+  loading: false,
+    nextItem: 1,
+    items: [],
+ 
   };
      },
      created() {
@@ -102,6 +131,9 @@ import PokemonInfo from '../components/PokemonInfo.vue';
             game_indices: response.data.game_indices,
             name: response.data.name,
             url: response.data.sprites.front_default,
+            id: response.data.id,
+            species: response.data.species,
+            types: response.data.types,
            };
          
         
@@ -117,6 +149,26 @@ import PokemonInfo from '../components/PokemonInfo.vue';
       //console.log(this.pokenons);
 
      },
+
+    computed: {
+      pokemonsFiltered() {
+        let valores = [];
+
+      valores = this.pokemons.filter((pokemon) => {
+      return (
+        pokemon.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ||
+        pokemon.id.toLowerCase().indexOf(this.searche.toLowerCase()) > -1  ||
+         pokemon.types.toLowerCase().indexOf(this.searche.toLowerCase()) > -1  ||
+          pokemon.species.toLowerCase().indexOf(this.searche.toLowerCase()) > -1 
+      );
+      });
+
+        return valores;
+      }
+    },
+
+    
+
   methods: {
     send_info(pokemon_info){
       this.selected_pokemon = pokemon_info
@@ -149,7 +201,7 @@ import PokemonInfo from '../components/PokemonInfo.vue';
 
 .flex-col {
   flex: 1;
-  background-color: burlywood;
+  background-color: teal;
   
 }
 
