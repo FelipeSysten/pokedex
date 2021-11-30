@@ -1,4 +1,5 @@
 <template>
+
   <v-app>
     <v-main>
       <router-view/>
@@ -8,11 +9,15 @@
 
 <script>
 
+
+
 export default {
   name: 'App',
 
   data: () => ({
     //
   }),
+
+
 };
 </script>
